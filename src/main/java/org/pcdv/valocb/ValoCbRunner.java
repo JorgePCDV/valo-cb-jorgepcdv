@@ -2,9 +2,10 @@ package org.pcdv.valocb;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.pcdv.valocb.csv.beans.ForexCsvBean;
+import org.pcdv.valocb.csv.beans.PriceCsvBean;
 import org.pcdv.valocb.csv.beans.converter.CsvFileToBeanConverter;
 import org.pcdv.valocb.csv.beans.factory.CsvToBeanFactory;
-import org.pcdv.valocb.csv.beans.ForexCsvBean;
 import org.pcdv.valocb.currency.CurrencyCode;
 import org.pcdv.valocb.product.Product;
 import org.pcdv.valocb.product.ProductImpl;
@@ -22,5 +23,6 @@ public class ValoCbRunner {
 
         CsvFileToBeanConverter csvFileToBeanConverter = new CsvFileToBeanConverter(new CsvToBeanFactory());
         List<ForexCsvBean> forexCsvBeans = csvFileToBeanConverter.convertForexCsvToBeans();
+        List<PriceCsvBean> priceCsvBeans = csvFileToBeanConverter.convertPriceCsvToBeans();
     }
 }
