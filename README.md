@@ -6,6 +6,7 @@
 
 * Java 17
 * Maven 3+
+* Lombok
 
 ## Build
 * mvn clean install
