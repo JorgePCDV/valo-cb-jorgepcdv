@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* Java 18
+* Java 17
 * Maven 3+
 
 ## Build
