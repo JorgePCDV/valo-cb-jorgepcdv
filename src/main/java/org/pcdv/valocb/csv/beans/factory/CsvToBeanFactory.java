@@ -4,6 +4,8 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.pcdv.valocb.csv.beans.ForexCsvBean;
 import org.pcdv.valocb.csv.beans.PriceCsvBean;
+import org.pcdv.valocb.csv.beans.ProductCsvBean;
+import org.pcdv.valocb.product.Product;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,6 +19,10 @@ public class CsvToBeanFactory {
 
     public CsvToBean<PriceCsvBean> createCsvToBeanPrice() throws FileNotFoundException {
         return createCsvToBean("csv/Prices.csv", 4, PriceCsvBean.class);
+    }
+
+    public CsvToBean<ProductCsvBean> createCsvToBeanProduct() throws FileNotFoundException {
+        return createCsvToBean("csv/Product.csv", 5, ProductCsvBean.class);
     }
 
     private <T> CsvToBean<T> createCsvToBean(String fileName, int skipLines, Class beanClass) throws FileNotFoundException {
