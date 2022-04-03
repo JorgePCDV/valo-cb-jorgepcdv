@@ -9,9 +9,11 @@ import org.pcdv.valocb.csv.beans.converter.CsvFileToBeanConverter;
 import org.pcdv.valocb.csv.beans.factory.CsvToBeanFactory;
 import org.pcdv.valocb.currency.CurrencyCode;
 import org.pcdv.valocb.forex.ForexConverter;
+import org.pcdv.valocb.portfolio.PortfolioMappings;
 import org.pcdv.valocb.product.Product;
 import org.pcdv.valocb.product.ProductImpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ValoCbRunner {
@@ -29,5 +31,6 @@ public class ValoCbRunner {
         List<ProductCsvBean> productCsvBeans = csvFileToBeanConverter.parseProductCsvBeans();
 
         ForexConverter forexConverter = new ForexConverter(forexCsvBeans);
+        PortfolioMappings portfolioMappings = new PortfolioMappings(new HashMap<>(), priceCsvBeans);
     }
 }
