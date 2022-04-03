@@ -2,9 +2,9 @@ package org.pcdv.valocb.portfolio;
 
 import org.pcdv.valocb.product.Product;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentMap;
+import java.util.List;
+import java.util.Map;
 
 public interface Portfolio {
-    ConcurrentMap<String, Queue<Product>> getProductsByName();
+    Map<String, List<Product>> getProductsByName();
 }
