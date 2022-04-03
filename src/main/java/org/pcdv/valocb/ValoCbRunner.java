@@ -22,7 +22,5 @@ public class ValoCbRunner {
 
         CsvFileToBeanConverter csvFileToBeanConverter = new CsvFileToBeanConverter(new CsvToBeanFactory());
         List<ForexCsvBean> forexCsvBeans = csvFileToBeanConverter.convertForexCsvToBeans();
-
-
     }
 }
