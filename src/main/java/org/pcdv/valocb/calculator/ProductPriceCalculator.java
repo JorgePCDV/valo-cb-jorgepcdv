@@ -29,13 +29,8 @@ public class ProductPriceCalculator {
             String productKey = e.getProduct();
             BigDecimal priceRateConverted = e.getPrice().multiply(conversionRate);
 
-            if (productPriceMappings.containsKey(productKey)) {
-                BigDecimal oldPrice = productPriceMappings.get(productKey);
-                BigDecimal newPrice = oldPrice.add(priceRateConverted);
-                productPriceMappings.put(productKey, newPrice);
-            } else {
-                productPriceMappings.put(productKey, priceRateConverted);
-            }
+            productPriceMappings.computeIfPresent(productKey, (k, v) -> v.add(priceRateConverted));
+            productPriceMappings.putIfAbsent(productKey, priceRateConverted);
         });
     }
 }

@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 
 public class PortfolioPriceCalculator {
     public BigDecimal calculatePortfolioPrice(Portfolio portfolio) {
-        portfolio.getProductsByName().entrySet().iterator().next().getKey();
-
-        return new BigDecimal("10");
+        return BigDecimal.TEN;
     }
 }
