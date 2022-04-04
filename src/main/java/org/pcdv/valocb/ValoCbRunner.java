@@ -10,6 +10,7 @@ import org.pcdv.valocb.csv.beans.PriceCsvBean;
 import org.pcdv.valocb.csv.beans.ProductCsvBean;
 import org.pcdv.valocb.csv.beans.converter.CsvFileToBeanConverter;
 import org.pcdv.valocb.csv.beans.factory.CsvToBeanFactory;
+import org.pcdv.valocb.csv.beans.writer.ValoCbCsvWriter;
 import org.pcdv.valocb.currency.CurrencyCode;
 import org.pcdv.valocb.forex.ForexConverter;
 import org.pcdv.valocb.portfolio.PortfolioMappings;
@@ -33,6 +34,10 @@ public class ValoCbRunner {
         PortfolioMappings portfolioMappings = new PortfolioMappings(new HashMap<>(), priceCsvBeans);
         ProductPriceCalculator euroProductPriceCalculator = new ProductPriceCalculator(CurrencyCode.EUR, new HashMap<>(), forexConverter, priceCsvBeans);
         ProductQuantityCalculator productQuantityCalculator = new ProductQuantityCalculator(new HashMap<>(), productCsvBeans);
-        PortfolioPriceCalculator portfolioPriceCalculator = new PortfolioPriceCalculator(new HashMap<>(), portfolioMappings, euroProductPriceCalculator, productQuantityCalculator);
+        PortfolioPriceCalculator euroPortfolioPriceCalculator = new PortfolioPriceCalculator(new HashMap<>(), portfolioMappings, euroProductPriceCalculator, productQuantityCalculator);
+
+        ValoCbCsvWriter valoCbCsvWriter = new ValoCbCsvWriter();
+        List<String[]> portfolioCsvList = valoCbCsvWriter.createPortfolioCsvData(euroPortfolioPriceCalculator.getPortfolioPriceMappings());
+        valoCbCsvWriter.createCsvReportFile(portfolioCsvList, "\\output\\PortfolioPrices.csv");
     }
 }
