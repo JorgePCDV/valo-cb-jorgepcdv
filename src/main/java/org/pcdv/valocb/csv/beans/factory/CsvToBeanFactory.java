@@ -5,7 +5,6 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import org.pcdv.valocb.csv.beans.ForexCsvBean;
 import org.pcdv.valocb.csv.beans.PriceCsvBean;
 import org.pcdv.valocb.csv.beans.ProductCsvBean;
-import org.pcdv.valocb.product.Product;
 
 import java.io.File;
 import java.io.FileNotFoundException;
