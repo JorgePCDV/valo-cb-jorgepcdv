@@ -3,6 +3,7 @@ package org.pcdv.valocb.forex;
 import org.junit.jupiter.api.Test;
 import org.pcdv.valocb.csv.beans.ForexCsvBean;
 import org.pcdv.valocb.currency.CurrencyCode;
+import org.pcdv.valocb.utils.TestDataGenerator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ class ForexConverterTest {
     void forexConverterConvertsToExpectedRates() {
         List<ForexCsvBean> forexCsvBeans = new ArrayList<>();
         forexCsvBeans.add(new ForexCsvBean(CurrencyCode.EUR, CurrencyCode.USD, "2"));
-        ForexConverter forexConverter = new ForexConverter(forexCsvBeans);
+        ForexConverter forexConverter = TestDataGenerator.generateForexConverter();
 
         assertAll("results",
                 () -> assertEquals(new BigDecimal("2"), forexConverter.convertCurrency(CurrencyCode.EUR, CurrencyCode.USD)),
