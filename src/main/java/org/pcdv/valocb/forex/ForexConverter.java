@@ -16,15 +16,24 @@ public class ForexConverter {
         forexConversionRates = new EnumMap<>(CurrencyCode.class);
 
         forexBeans.forEach(e -> {
-            EnumMap<CurrencyCode, BigDecimal> fromCurrencyMapping = new EnumMap<>(CurrencyCode.class);
+            forexConversionRates.putIfAbsent(e.getFromCurrency(), new EnumMap<>(CurrencyCode.class));
+            EnumMap<CurrencyCode, BigDecimal> fromCurrencyMapping = forexConversionRates.get(e.getFromCurrency());
             fromCurrencyMapping.put(e.getToCurrency(), sanitizeBadForexValue(e.getValue()));
-            forexConversionRates.put(e.getFromCurrency(), fromCurrencyMapping);
 
             // Reverse conversion rate
-            EnumMap<CurrencyCode, BigDecimal> toCurrencyMapping = new EnumMap<>(CurrencyCode.class);
+            forexConversionRates.putIfAbsent(e.getToCurrency(), new EnumMap<>(CurrencyCode.class));
+            EnumMap<CurrencyCode, BigDecimal> toCurrencyMapping = forexConversionRates.get(e.getToCurrency());
             toCurrencyMapping.put(e.getFromCurrency(), BigDecimal.ONE.divide(sanitizeBadForexValue(e.getValue())));
-            forexConversionRates.put(e.getToCurrency(), toCurrencyMapping);
+
+            // Identity convertsion rate
+            forexConversionRates.putIfAbsent(e.getFromCurrency(), new EnumMap<>(CurrencyCode.class));
+            EnumMap<CurrencyCode, BigDecimal> identityCurrencyMapping = forexConversionRates.get(e.getFromCurrency());
+            identityCurrencyMapping.put(e.getFromCurrency(), BigDecimal.ONE);
         });
+    }
+
+    public BigDecimal convertCurrency(CurrencyCode from, CurrencyCode to) {
+        return forexConversionRates.get(from).get(to);
     }
 
     private BigDecimal sanitizeBadForexValue(String value) {

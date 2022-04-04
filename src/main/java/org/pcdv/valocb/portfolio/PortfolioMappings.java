@@ -21,6 +21,7 @@ public class PortfolioMappings {
             portfolioMap.putIfAbsent(e.getPortfolio(), new PortfolioImpl(new HashMap<>()));
             Portfolio portfolio = portfolioMap.get(e.getPortfolio());
             Map<String, List<Product>> portfolioProductMap = portfolio.getProductsByName();
+
             portfolioProductMap.putIfAbsent(e.getProduct(), new LinkedList<>());
             List<Product> portfolioProductList = portfolioProductMap.get(e.getProduct());
             portfolioProductList.add(new ProductImpl(e.getProduct(), e.getUnderlying(), e.getCurrency(), e.getPrice()));

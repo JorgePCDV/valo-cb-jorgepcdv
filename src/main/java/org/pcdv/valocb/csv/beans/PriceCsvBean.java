@@ -4,6 +4,8 @@ import com.opencsv.bean.CsvBindByPosition;
 import lombok.Getter;
 import org.pcdv.valocb.currency.CurrencyCode;
 
+import java.math.BigDecimal;
+
 @Getter
 public class PriceCsvBean {
     @CsvBindByPosition(position = 0)
@@ -19,5 +21,5 @@ public class PriceCsvBean {
     private CurrencyCode currency;
 
     @CsvBindByPosition(position = 4)
-    private int price;
+    private BigDecimal price;
 }
