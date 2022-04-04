@@ -1,12 +1,14 @@
 package org.pcdv.valocb.csv.beans;
 
 import com.opencsv.bean.CsvBindByPosition;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.pcdv.valocb.currency.CurrencyCode;
 
 import java.math.BigDecimal;
 
 @Getter
+@AllArgsConstructor
 public class PriceCsvBean {
     @CsvBindByPosition(position = 0)
     private String portfolio;
