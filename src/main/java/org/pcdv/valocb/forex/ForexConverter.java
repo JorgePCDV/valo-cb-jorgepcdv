@@ -25,7 +25,7 @@ public class ForexConverter {
             EnumMap<CurrencyCode, BigDecimal> toCurrencyMapping = forexConversionRates.get(e.getToCurrency());
             toCurrencyMapping.put(e.getFromCurrency(), BigDecimal.ONE.divide(sanitizeBadForexValue(e.getValue())));
 
-            // Identity convertsion rate
+            // Identity conversion rate
             forexConversionRates.putIfAbsent(e.getFromCurrency(), new EnumMap<>(CurrencyCode.class));
             EnumMap<CurrencyCode, BigDecimal> identityCurrencyMapping = forexConversionRates.get(e.getFromCurrency());
             identityCurrencyMapping.put(e.getFromCurrency(), BigDecimal.ONE);
