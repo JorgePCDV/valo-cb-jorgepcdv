@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface Portfolio {
     Map<String, List<Product>> getProductsByName();
+    String getPortfolioName();
 }

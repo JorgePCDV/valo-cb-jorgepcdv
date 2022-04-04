@@ -33,4 +33,8 @@ public class ProductPriceCalculator {
             productPriceMappings.putIfAbsent(productKey, priceRateConverted);
         });
     }
+
+    public BigDecimal getProductPrice(String productName) {
+        return productPriceMappings.get(productName);
+    }
 }

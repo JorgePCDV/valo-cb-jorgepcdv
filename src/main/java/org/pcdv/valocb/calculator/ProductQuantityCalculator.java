@@ -13,21 +13,16 @@ public class ProductQuantityCalculator {
     public ProductQuantityCalculator(Map<String, Integer> productQuantityMappings, List<ProductCsvBean> productCsvBeans) {
         this.productQuantityMappings = productQuantityMappings;
 
-        /*productCsvBeans.forEach(e -> {
-            CurrencyCode convertFrom = e.getCurrency();
-            BigDecimal conversionRate = forexConverter.convertCurrency(convertFrom, convertTo);
+        productCsvBeans.forEach(e -> {
             String productKey = e.getProduct();
-            BigDecimal priceRateConverted = e.getPrice().multiply(conversionRate);
+            int productQuantity = e.getQuantity();
 
-            if (productPriceMappings.containsKey(productKey)) {
-                BigDecimal oldPrice = productPriceMappings.get(productKey);
-                BigDecimal newPrice = oldPrice.add(priceRateConverted);
-                productPriceMappings.put(productKey, newPrice);
-            } else {
-                productPriceMappings.put(productKey, priceRateConverted);
-            }
+            productQuantityMappings.computeIfPresent(productKey, (k, v) -> v + productQuantity);
+            productQuantityMappings.putIfAbsent(productKey, productQuantity);
+        });
+    }
 
-            productQuantityMappings.comp
-        });*/
+    public int getProductQuantity(String productName) {
+        return productQuantityMappings.get(productName);
     }
 }

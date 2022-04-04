@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pcdv.valocb.calculator.PortfolioPriceCalculator;
 import org.pcdv.valocb.calculator.ProductPriceCalculator;
+import org.pcdv.valocb.calculator.ProductQuantityCalculator;
 import org.pcdv.valocb.csv.beans.ForexCsvBean;
 import org.pcdv.valocb.csv.beans.PriceCsvBean;
 import org.pcdv.valocb.csv.beans.ProductCsvBean;
@@ -28,11 +29,10 @@ public class ValoCbRunner {
         List<ProductCsvBean> productCsvBeans = csvFileToBeanConverter.parseProductCsvBeans();
 
         ForexConverter forexConverter = new ForexConverter(forexCsvBeans);
+
         PortfolioMappings portfolioMappings = new PortfolioMappings(new HashMap<>(), priceCsvBeans);
         ProductPriceCalculator euroProductPriceCalculator = new ProductPriceCalculator(CurrencyCode.EUR, new HashMap<>(), forexConverter, priceCsvBeans);
-
-        PortfolioPriceCalculator portfolioPriceCalculator = new PortfolioPriceCalculator();
-        logger.info("Price of portolio P1 is {}",
-                portfolioPriceCalculator.calculatePortfolioPrice(portfolioMappings.getPortfolioMap().get("P1")));
+        ProductQuantityCalculator productQuantityCalculator = new ProductQuantityCalculator(new HashMap<>(), productCsvBeans);
+        PortfolioPriceCalculator portfolioPriceCalculator = new PortfolioPriceCalculator(new HashMap<>(), portfolioMappings, euroProductPriceCalculator, productQuantityCalculator);
     }
 }
