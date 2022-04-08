@@ -16,11 +16,7 @@
 
 ValoCbRunner is the entry point.
 
-Once application runs, you should see the following prompt:
-
-* enter command: 
-
-User can choose among following options.
+Once run, it should generate csv files for pricing in the output directory. 
 
 
 
