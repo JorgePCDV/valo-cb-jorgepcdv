@@ -8,6 +8,8 @@ import org.pcdv.valocb.currency.CurrencyCode;
 @Getter
 @AllArgsConstructor
 public class ForexCsvBean {
+    public ForexCsvBean() {};
+
     @CsvBindByPosition(position = 0)
     private CurrencyCode fromCurrency;
 

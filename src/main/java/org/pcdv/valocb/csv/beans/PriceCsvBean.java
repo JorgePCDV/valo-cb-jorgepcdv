@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 public class PriceCsvBean {
+    public PriceCsvBean() {}
+
     @CsvBindByPosition(position = 0)
     private String portfolio;
 

@@ -5,6 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class ProductCsvBean {
+    public ProductCsvBean() {}
+
     @CsvBindByPosition(position = 0)
     private String product;
 
